@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "projectName": "ATB Project",
+      "location": "Canada"
+    },
+    {
+      "id": 2,
+      "projectName": "Galicia Project",
+      "location": "Argentina"
+    },
+    {
+      "projectName": "Vast Project",
+      "location": "USA",
+      "id": 3
+    },
+    {
+      "projectName": "New Project",
+      "location": "Canada",
+      "id": 4
+    },
+    {
+      "projectName": "New Project 2",
+      "location": "Argentina",
+      "id": 5
+    }
+  ]
+}
