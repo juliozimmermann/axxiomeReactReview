@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component, Fragment, useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -11,9 +11,14 @@ import { fetchProjects } from '../services/ProjectsService';
 
 import { loadProjects, addProject } from '../data/actions/projects';
 
-function Projects({ projectsFromReduxState, dispatch }) {
+/* function Projects({ projectsFromReduxState, dispatch }) {
   useEffect(() => {
-    fetchProjects().then(({ data }) => dispatch(loadProjects(data)));
+    fetchProjects().then(({ data }) => dispatch(
+      {
+        type: 'LOAD_PROJECTS',
+        payload: data
+      }
+    )); //loadProjects(data)
   }, []);
 
   const handleAddProjectClick = (project) => {
@@ -29,6 +34,47 @@ function Projects({ projectsFromReduxState, dispatch }) {
     <ProjectInput handleAddProjectClick={handleAddProjectClick} />
     <ProjectList projects={projectsFromReduxState} />
   </>;
+} */
+
+class Projects extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleAddProjectClick = this.handleAddProjectClick.bind(this);
+  }
+
+  componentDidMount() {
+    fetchProjects().then(({ data }) => this.props.dispatch(
+      {
+        type: 'LOAD_PROJECTS',
+        payload: data
+      }
+    ));
+
+    // console.log(`didMount: ${this.props.dispatch}`);
+  }
+
+  handleAddProjectClick(project) {
+    // console.log(`handleAddProjectClick: ${this}`);
+
+    //TO DO
+    const postData = async () => {
+      const { data } = await api.post('/projects', project);
+      this.props.dispatch(addProject(data));
+    };
+
+    postData();
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <ProjectInput handleAddProjectClick={this.handleAddProjectClick} />
+        <ProjectList projects={this.props.projectsFromReduxState} />
+      </Fragment>
+    );
+  }
+
 }
 
 const mapStateToProps = ({ projects: { data }}) => ({ projectsFromReduxState: data }); 

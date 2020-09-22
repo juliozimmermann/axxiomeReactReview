@@ -4,6 +4,15 @@ class Page extends Component {
 
   constructor(props) {
     super(props);
+    //do not call setState insice here
+  }
+
+  static propTypes = {
+    title: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {
+    title: 'Page'
   }
 
   state = {
@@ -17,18 +26,25 @@ class Page extends Component {
 
   // componentWillUpdate(prevState, prepProps) {
   shouldComponentUpdate(nextProps, nextState) {
+    //try 
     //add conditions to avoid unnecessary renders
     if (nextProps.propX !== this.props.propX) {
       return false;
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
 
   }
 
   componentWillUnmount() {
+    // event dispose of react components
+    // don't call setState here
     // logout the user
+  }
+
+  componentDidCatch(error, info) {
+    
   }
 
   render() {
@@ -36,10 +52,6 @@ class Page extends Component {
       <span>Page</span>
     </div>
   }
-}
-
-function PageNotState() {
-
 }
 
 export default Page;
