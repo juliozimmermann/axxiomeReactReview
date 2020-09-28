@@ -19,5 +19,8 @@ export default function Menu() {
     <li>
       <Link to="/reducerCounter">Counter (Reducer, useCallback)</Link>
     </li>
+    <li>
+      <Link to="/customRedux">Custom Redux</Link>
+    </li>
   </ul>
 }

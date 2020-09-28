@@ -13,6 +13,7 @@ import Projects from './pages/Projects';
 import Dashboard from './pages/Dashboard';
 import CounterState from './pages/CounterState';
 import ReducerState from './pages/ReducerState';
+import CustomRedux from './pages/CustomRedux';
 
 import NotFound from './pages/NotFound';
 
@@ -41,6 +42,7 @@ function App() {
               <Route path="/stateCounter" component={CounterState} />
               <Route path="/reducerCounter" component={ReducerState} />
               <Route path="/posts" component={Posts} />
+              <Route path="/customRedux" component={CustomRedux} />
               <Route path="/" component={NotFound} />
             </Switch>
           </HashRouter>
